@@ -14,4 +14,6 @@ class EnvironmentVariable:
 
 env_var = EnvironmentVariable()
 mongo_client = pymongo.MongoClient(env_var.mongo_db_url)
+git# mongo_client = pymongo.MongoClient('mongodb+srv://admin:admin@cluster0.pxgxapd.mongodb.net/?retryWrites=true&w=majority')
+
 TARGET_COLUMN = "credit_risk"
