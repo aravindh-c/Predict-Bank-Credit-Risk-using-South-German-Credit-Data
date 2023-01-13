@@ -69,7 +69,7 @@ class ModelEvaluation:
             input_feature_name = list(transformer.feature_names_in_)
             input_arr =transformer.transform(test_df[input_feature_name])
             y_pred = model.predict(input_arr)
-            print(f"Prediction using previous model: {target_encoder.inverse_transform(y_pred[:5])}")
+            # print(f"Prediction using previous model: {target_encoder.inverse_transform(y_pred[:5])}")
             previous_model_score = f1_score(y_true=y_true, y_pred=y_pred)
             logging.info(f"Accuracy using previous trained model: {previous_model_score}")
            
@@ -78,7 +78,7 @@ class ModelEvaluation:
             input_arr =current_transformer.transform(test_df[input_feature_name])
             y_pred = current_model.predict(input_arr)
             y_true =current_target_encoder.transform(target_df)
-            print(f"Prediction using trained model: {current_target_encoder.inverse_transform(y_pred[:5])}")
+            # print(f"Prediction using trained model: {current_target_encoder.inverse_transform(y_pred[:5])}")
             current_model_score = f1_score(y_true=y_true, y_pred=y_pred)
             logging.info(f"Accuracy using current trained model: {current_model_score}")
             if current_model_score<=previous_model_score:

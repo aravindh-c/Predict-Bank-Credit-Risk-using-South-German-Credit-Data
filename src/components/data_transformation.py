@@ -7,7 +7,7 @@ from sklearn.pipeline import Pipeline
 import pandas as pd
 from src import utils
 import numpy as np
-# from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 from imblearn.combine import SMOTETomek
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import RobustScaler
@@ -55,15 +55,15 @@ class DataTransformation:
             target_feature_train_df = train_df[TARGET_COLUMN]
             target_feature_test_df = test_df[TARGET_COLUMN]
 
-            # label_encoder = LabelEncoder()
-            # label_encoder.fit(target_feature_train_df)
+            label_encoder = LabelEncoder()
+            label_encoder.fit(target_feature_train_df)
 
             # #transformation on target columns
-            # target_feature_train_arr = label_encoder.transform(target_feature_train_df)
-            # target_feature_test_arr = label_encoder.transform(target_feature_test_df)
+            target_feature_train_arr = label_encoder.transform(target_feature_train_df)
+            target_feature_test_arr = label_encoder.transform(target_feature_test_df)
 
-            target_feature_train_arr = target_feature_train_df
-            target_feature_test_arr = target_feature_test_df
+            # target_feature_train_arr = target_feature_train_df
+            # target_feature_test_arr = target_feature_test_df
 
             transformation_pipleine = DataTransformation.get_data_transformer_object()
             transformation_pipleine.fit(input_feature_train_df)
@@ -98,8 +98,8 @@ class DataTransformation:
             utils.save_object(file_path=self.data_transformation_config.transform_object_path,
              obj=transformation_pipleine)
 
-            # utils.save_object(file_path=self.data_transformation_config.target_encoder_path,
-            # obj=label_encoder)
+            utils.save_object(file_path=self.data_transformation_config.target_encoder_path,
+            obj=label_encoder)
 
 
 
@@ -107,7 +107,7 @@ class DataTransformation:
                 transform_object_path=self.data_transformation_config.transform_object_path,
                 transformed_train_path = self.data_transformation_config.transformed_train_path,
                 transformed_test_path = self.data_transformation_config.transformed_test_path,
-                # target_encoder_path = self.data_transformation_config.target_encoder_path
+                target_encoder_path = self.data_transformation_config.target_encoder_path
 
             )
 
