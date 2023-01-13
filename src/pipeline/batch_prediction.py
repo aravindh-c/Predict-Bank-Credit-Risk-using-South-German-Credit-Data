@@ -31,10 +31,10 @@ def start_batch_prediction(input_file_path):
         # logging.info(f"Target encoder to convert predicted column into categorical")
         target_encoder = load_object(file_path=model_resolver.get_latest_target_encoder_path())
 
-        cat_prediction = target_encoder.inverse_transform(prediction)
+        # cat_prediction = target_encoder.inverse_transform(prediction)
 
         df["prediction"]=prediction
-        df["cat_pred"]=cat_prediction
+        # df["cat_pred"]=cat_prediction
 
 
         prediction_file_name = os.path.basename(input_file_path).replace(".csv",f"{datetime.now().strftime('%m%d%Y__%H%M%S')}.csv")
